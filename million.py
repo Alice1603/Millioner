@@ -8,8 +8,10 @@ class Millioner:
     game = 0
 
     def test_input(self, answer):
-
-        if answer.upper() in ["A", "B", "C", "D"]:
+        if answer == "0":
+            self.level -= 1
+            return -1
+        elif answer.upper() in ["A", "B", "C", "D"]:
             if answer == self.rights[self.level - 1]:
                 return 1
             else:
@@ -79,12 +81,15 @@ class Millioner:
             return 1
 
     def check_fix(self, n):
-        n = int(n)
-        if 1 <= n <= 15:
-            self.game = 1
-            self.fixed = n
-            return n
-        return 0
+        try:
+            n = int(n)
+            if 1 <= n <= 15:
+                self.game = 1
+                self.fixed = n
+                return n
+            return 0
+        except:
+            return 0
 
     def start_game(self):
         for i in range(1, 16):
@@ -98,5 +103,3 @@ class Millioner:
         else:
             self.start_game()
             return 0
-
-
